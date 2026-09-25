@@ -25,8 +25,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
-        {/* Marks "JavaScript is running" before first paint; without it the page falls back to a plain layout. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Before first paint: mark "JavaScript is running" (without it the page falls back to a plain layout),
+            and mark "seen" to skip the preloader for returning visitors and reduced-motion users. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('ic-intro')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('seen')}catch(e){d.classList.add('seen')}",
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
