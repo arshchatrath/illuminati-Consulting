@@ -154,7 +154,7 @@ em { font-style: italic; color: var(--gold-lit); }
 }
 .hero__title {
   font-family: var(--serif); font-weight: 400; letter-spacing: -0.025em; line-height: 1.02;
-  font-size: var(--step-display-xl);
+  font-size: min(var(--step-display-xl), 10.5svh); /* short screens keep room for the illustration */
 }
 .hero__title span { display: block; }
 .hero__title em { font-weight: 400; }
@@ -431,7 +431,7 @@ em { font-style: italic; color: var(--gold-lit); }
   .hero__proof { font-size: 0.8rem; }
   .js .hero { padding-top: 84px; }
   .hero__eyebrow-more { display: none; }
-  .js .frame__caption { left: 26px; right: 26px; bottom: 26px; font-size: 0.74rem; }
+  .js .frame__caption { font-size: 0.74rem; }
   .js .chapters { left: 16px; right: 16px; width: auto; top: auto; bottom: 16px; height: calc(47vh - 28px); }
   .js .chapter { justify-content: flex-start; gap: 12px; padding: 0; }
   .metrics { gap: 14px 18px; }

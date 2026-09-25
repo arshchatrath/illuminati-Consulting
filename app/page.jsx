@@ -92,7 +92,7 @@ export default function Home() {
               <div className="stage" id="stage" dangerouslySetInnerHTML={{ __html: sceneMarkup() }} />
               <div className="frame__shade" aria-hidden="true" />
               <p className="frame__caption" id="caption">
-                Scroll to see how we work
+                Scroll
                 <span className="frame__cue" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" /></svg></span>
               </p>
             </div>
