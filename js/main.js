@@ -49,7 +49,6 @@ const caption = document.getElementById('caption');
 const chapters = [...document.querySelectorAll('.chapter')];
 const progressItems = [...document.querySelectorAll('#progress li')];
 const progress = document.getElementById('progress');
-const luxEl = document.getElementById('lux');
 
 const scene = buildScene(stage);
 
@@ -91,18 +90,10 @@ function sampleKeys(t) {
 let lampIntro = reduceMotion ? 1 : 0;
 let target = 0;
 let current = 0;
-let last = {};
 
 function readScroll() {
   const range = story.offsetHeight - vh;
   target = clamp((window.scrollY - story.offsetTop) / range);
-}
-
-function setIfChanged(key, el, prop, value) {
-  if (last[key] === value) return;
-  last[key] = value;
-  if (prop === 'text') el.textContent = value;
-  else el.style.setProperty(prop, value);
 }
 
 function render(t) {
@@ -175,8 +166,6 @@ function render(t) {
   }
 
   stage.style.setProperty('--lamp', lampIntro.toFixed(3));
-  const lux = Math.round(12 + lampIntro * 140 + t * 848);
-  setIfChanged('lux', luxEl, 'text', String(lux).padStart(4, '0'));
 }
 
 function tick() {
@@ -312,7 +301,7 @@ function setupForm() {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 measure();
-window.addEventListener('resize', () => { measure(); last = {}; });
+window.addEventListener('resize', measure);
 document.fonts?.ready.then(measure);
 setupReveals();
 setupCases();
