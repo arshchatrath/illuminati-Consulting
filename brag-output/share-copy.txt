@@ -1,0 +1,1 @@
+The new illuminaticonsulting.ai: switch on the lamp and one scroll takes you from a messy business problem to the best-fit AI, then to the number it moved (+4% topline, 40% efficiency). Built on Next.js with a hand-drawn strategy room you travel through as you scroll.
