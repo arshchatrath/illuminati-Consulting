@@ -70,7 +70,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; /* menu jumps land below the fixed nav */ }
 body {
   margin: 0;
   font-family: var(--sans);
@@ -441,6 +441,29 @@ em { font-style: italic; color: var(--gold-lit); }
   .dimmer__stops { grid-template-columns: repeat(3, 1fr); row-gap: 24px; }
   .dimmer__track { display: none; }
   .footer__links { margin-left: 0; }
+}
+/* Touch screens: finger-sized tap areas for the small text links. */
+@media (pointer: coarse) {
+  .nav__brand { padding-block: 7px; }
+  .footer__links a, .contact__direct a { display: inline-block; padding-block: 12px; }
+  .contact__direct { gap: 0; }
+}
+/* Landscape phones: wide but short. One-line headline, wider chapter column, lighter chapters. */
+@media (min-width: 820px) and (max-height: 500px) {
+  .js .hero { padding-top: 86px; }
+  .hero__eyebrow { display: none; }
+  .hero__title { font-size: 7.5svh; }
+  .hero__title span { display: inline; }
+  .hero__sub { margin-top: 8px; max-width: none; font-size: 0.85rem; }
+  .js .chapters { top: 76px; bottom: 12px; width: calc(48vw - 56px); }
+  .js .chapter { gap: 10px; }
+  .chapter h2 { font-size: min(var(--step-display-m), 8svh); }
+  .chapter > p:not(.chapter__eyebrow) { font-size: 0.9rem; }
+  .chapter .chips { display: none; }
+  .metrics { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metrics b { font-size: min(var(--step-display-m), 8svh); }
+  .metrics span { font-size: 0.72rem; margin-top: 4px; }
+  .js .progress { display: none; }
 }
 @media (max-width: 600px) {
   /* Results: problem on its own line, then the solution, then tag and result side by side. */

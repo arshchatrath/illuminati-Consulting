@@ -78,7 +78,7 @@ export default function Home() {
                 AI-first advisory<span className="hero__eyebrow-more"> &nbsp;·&nbsp; Strategy · Generative AI · Agentic AI · ML</span>
               </p>
               <h1 className="hero__title">
-                <span>The <em>best-fit</em> AI</span>
+                <span>The <em>best-fit</em> AI</span>{' '}
                 <span>for every business problem.</span>
               </h1>
               <p className="hero__sub">We find the AI that fits each business problem, build it with your teams, and prove it in your P&amp;L.</p>

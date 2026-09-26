@@ -51,7 +51,7 @@ export default function Preloader({ ready = true, onComplete, lasers = LOGO_LASE
     bgRef.current.prepend(canvas);
     // The terrain starts on the first frame, after React's start-up work. Phones skip it: starting a WebGL
     // context costs them a noticeable pause, and the laser engraving carries the moment on its own.
-    let terrain = window.innerWidth < 820 ? false : null;
+    let terrain = window.innerWidth < 820 || window.innerHeight < 500 ? false : null;
     const onResize = () => terrain && terrain.resize();
     window.addEventListener('resize', onResize);
 
