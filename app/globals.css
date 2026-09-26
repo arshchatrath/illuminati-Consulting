@@ -438,8 +438,31 @@ em { font-style: italic; color: var(--gold-lit); }
   .form { padding: 20px 16px; }
   .form__row { grid-template-columns: 1fr; }
   .form .btn { justify-self: stretch; justify-content: center; }
-  .dimmer__stops { grid-template-columns: repeat(3, 1fr); row-gap: 24px; }
-  .dimmer__track { display: none; }
+  /* Engagement scale: a vertical track on phones, lit up to the chosen model. */
+  .dimmer__track, .dimmer__ends { display: none; }
+  .dimmer__stops { position: relative; grid-template-columns: 1fr; margin-top: 0; }
+  .dimmer__stops::before, .dimmer__stops::after {
+    content: ""; position: absolute; left: 11px; top: 22px; width: 2px; border-radius: 2px;
+  }
+  .dimmer__stops::before { bottom: 22px; background: var(--edge); }
+  .dimmer__stops::after {
+    height: calc((100% - 44px) * var(--level));
+    background: linear-gradient(180deg, var(--gold-deep), var(--gold-lit));
+    box-shadow: 0 0 14px rgba(240, 201, 106, .5);
+    transition: height var(--dur-ui) var(--ease-out);
+  }
+  .dimmer__stops button {
+    position: relative; z-index: 1; flex-direction: row; gap: 16px;
+    padding: 10px 0; font-size: 1rem; text-align: left;
+  }
+  .dimmer__stops button::before { flex: none; }
+  .dimmer__stops button:first-child::after,
+  .dimmer__stops button:last-child::after {
+    margin-left: auto; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint);
+  }
+  .dimmer__stops button:first-child::after { content: "You lead"; }
+  .dimmer__stops button:last-child::after { content: "We own it"; }
+  .dimmer__desc { min-height: 0; }
   .footer__links { margin-left: 0; }
 }
 /* Touch screens: finger-sized tap areas for the small text links. */
