@@ -75,7 +75,7 @@ export default function Home() {
           <div className="story__sticky">
             <div className="hero" id="hero">
               <p className="hero__eyebrow">
-                AI-first advisory<span className="hero__eyebrow-more"> &nbsp;·&nbsp; Strategy · Generative AI · Agentic AI · ML</span>
+                AI-first advisory<span className="hero__eyebrow-sep" aria-hidden="true"> &nbsp;·&nbsp; </span><span className="hero__eyebrow-more">Strategy · Generative AI · Agentic AI · ML</span>
               </p>
               <h1 className="hero__title">
                 <span>The <em>best-fit</em> AI</span>{' '}

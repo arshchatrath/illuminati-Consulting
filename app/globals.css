@@ -170,6 +170,13 @@ em { font-style: italic; color: var(--gold-lit); }
 /* Until the camera takes over, the scene is simply scaled to fill the frame. */
 .stage, .layer { position: absolute; inset: 0; width: 100%; height: 100%; }
 .layer { overflow: visible; }
+/* Two stagings of the room (see lib/scene.js): the panorama, and a re-staged tall room for portrait phones. */
+.scene { display: contents; }
+.scene--tall { display: none; }
+@media (max-width: 819px) and (orientation: portrait) {
+  .scene--wide { display: none; }
+  .scene--tall { display: contents; }
+}
 .frame__shade {
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(120% 90% at 60% 55%, transparent 55%, rgba(2, 8, 6, .55) 100%);
@@ -425,7 +432,9 @@ em { font-style: italic; color: var(--gold-lit); }
   .nav { top: 10px; }
   .js .story { height: 620vh; }
   .js .hero { padding-top: 84px; }
-  .hero__eyebrow-more { display: none; }
+  /* Phones: the service list moves to its own line instead of being dropped. */
+  .hero__eyebrow-sep { display: none; }
+  .hero__eyebrow-more { display: block; margin-top: 6px; color: var(--text-muted); letter-spacing: 0.1em; }
   .js .frame__caption { font-size: 0.74rem; }
   .js .chapters { left: 16px; right: 16px; width: auto; top: auto; bottom: 16px; height: calc(47vh - 28px); }
   .js .chapter { justify-content: flex-start; gap: 12px; padding: 0; }
@@ -438,8 +447,31 @@ em { font-style: italic; color: var(--gold-lit); }
   .form { padding: 20px 16px; }
   .form__row { grid-template-columns: 1fr; }
   .form .btn { justify-self: stretch; justify-content: center; }
-  .dimmer__stops { grid-template-columns: repeat(3, 1fr); row-gap: 24px; }
-  .dimmer__track { display: none; }
+  /* Engagement scale: a vertical track on phones, lit up to the chosen model. */
+  .dimmer__track, .dimmer__ends { display: none; }
+  .dimmer__stops { position: relative; grid-template-columns: 1fr; margin-top: 0; }
+  .dimmer__stops::before, .dimmer__stops::after {
+    content: ""; position: absolute; left: 11px; top: 22px; width: 2px; border-radius: 2px;
+  }
+  .dimmer__stops::before { bottom: 22px; background: var(--edge); }
+  .dimmer__stops::after {
+    height: calc((100% - 44px) * var(--level));
+    background: linear-gradient(180deg, var(--gold-deep), var(--gold-lit));
+    box-shadow: 0 0 14px rgba(240, 201, 106, .5);
+    transition: height var(--dur-ui) var(--ease-out);
+  }
+  .dimmer__stops button {
+    position: relative; z-index: 1; flex-direction: row; gap: 16px;
+    padding: 10px 0; font-size: 1rem; text-align: left;
+  }
+  .dimmer__stops button::before { flex: none; }
+  .dimmer__stops button:first-child::after,
+  .dimmer__stops button:last-child::after {
+    margin-left: auto; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint);
+  }
+  .dimmer__stops button:first-child::after { content: "You lead"; }
+  .dimmer__stops button:last-child::after { content: "We own it"; }
+  .dimmer__desc { min-height: 0; }
   .footer__links { margin-left: 0; }
 }
 /* Touch screens: finger-sized tap areas for the small text links. */
@@ -459,7 +491,8 @@ em { font-style: italic; color: var(--gold-lit); }
   .js .chapter { gap: 10px; }
   .chapter h2 { font-size: min(var(--step-display-m), 8svh); }
   .chapter > p:not(.chapter__eyebrow) { font-size: 0.9rem; }
-  .chapter .chips { display: none; }
+  .chapter .chips { gap: 6px; }
+  .chapter .chips li { font-size: 0.68rem; padding: 3px 8px; }
   .metrics { grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .metrics b { font-size: min(var(--step-display-m), 8svh); }
   .metrics span { font-size: 0.72rem; margin-top: 4px; }
