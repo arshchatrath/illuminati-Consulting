@@ -82,10 +82,6 @@ export default function Home() {
                 <span>for every business problem.</span>
               </h1>
               <p className="hero__sub">We find the AI that fits each business problem, build it with your teams, and prove it in your P&amp;L.</p>
-              <div className="hero__cta">
-                <a className="btn btn--gold" href="#contact"><Bulb />Book a strategy call</a>
-                <p className="hero__proof"><b>+4%</b> topline · <b>40%</b> efficiency gain · ex-Deloitte AI leadership</p>
-              </div>
             </div>
 
             <div className="frame" id="frame">
